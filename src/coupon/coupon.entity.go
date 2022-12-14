@@ -56,19 +56,19 @@ type Coupon struct {
 
 type GetCouponsListParams struct {
 	*src.WooConfig
-	context         WooContext `json:"context,omitempty"`
-	page            uint32     `json:"page,omitempty"`
-	per_page        uint8      `json:"per_Page,omitempty"`
-	search          string     `json:"search,omitempty"`
-	after           string     `json:"after,omitempty"`
-	before          string     `json:"before,omitempty"`
-	modified_after  string     `json:"modified_After,omitempty"`
-	modified_before string     `json:"modified_Before,omitempty"`
-	dates_are_gmt   bool       `json:"dates_Are_Gmt,omitempty"`
-	exclude         []string   `json:"exclude,omitempty"`
-	include         []string   `json:"include,omitempty"`
-	offset          uint32     `json:"offset,omitempty"`
-	order           Order      `json:"order,omitempty"`
-	orderby         OrderBy    `json:"orderby,omitempty"`
-	code            string     `json:"code,omitempty"`
+	Context        WooContext `json:"context,omitempty"`
+	Page           uint32     `json:"page,omitempty"`
+	PerPage        uint8      `json:"per_page,omitempty"`
+	Search         string     `json:"search,omitempty"`
+	After          string     `json:"after,omitempty"`
+	Before         string     `json:"before,omitempty"`
+	ModifiedAfter  string     `json:"modified_after,omitempty"`
+	ModifiedBefore string     `json:"modified_before,omitempty"`
+	DatesAreGmt    bool       `json:"dates_are_gmt,omitempty"`
+	Exclude        []string   `json:"exclude,omitempty"`
+	Include        []string   `json:"include,omitempty"`
+	Offset         uint32     `json:"offset,omitempty"`
+	Order          Order      `json:"order,omitempty"`
+	OrderBy        OrderBy    `json:"order_by,omitempty"`
+	Code           string     `json:"code,omitempty"`
 }

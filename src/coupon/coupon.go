@@ -19,7 +19,7 @@ type CouponService struct {
 }
 
 type ICoupon interface {
-	GetCouponsList(params GetCouponsListParams) (coupons []*Coupon, totalProducts, totalPages int32, err error)
+	GetCouponsList(params *GetCouponsListParams) (coupons []*Coupon, totalProducts, totalPages int32, err error)
 }
 
 func NewCouponService(config *src.WooConfig) *CouponService {
@@ -28,7 +28,10 @@ func NewCouponService(config *src.WooConfig) *CouponService {
 	}
 }
 
-func (c *CouponService) GetCouponsList(params GetCouponsListParams) (coupons []*Coupon, totalCoupons, totalPages int32, err error) {
+func (c *CouponService) GetCouponsList(params *GetCouponsListParams) (coupons []*Coupon, totalCoupons, totalPages int32, err error) {
+	if params == nil {
+		params = &GetCouponsListParams{}
+	}
 	params.WooConfig = c.WooConfig
 	request, err := httpHandler.NewGetRequest(c.WooConfig.Address, getCouponListEndPoint, params, nil)
 	if err != nil {

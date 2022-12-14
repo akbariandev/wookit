@@ -30,7 +30,7 @@ func (r *Request) Call() (*http.Response, error) {
 
 func (r *Request) makeUrl(host, endPoint string, urlParams any) error {
 
-	var mapUrlParams map[string]string
+	var mapUrlParams map[string]any
 	var arrayUrlParams []string
 	byteUrlParam, err := json.Marshal(urlParams)
 	if err != nil {
@@ -42,7 +42,7 @@ func (r *Request) makeUrl(host, endPoint string, urlParams any) error {
 
 	r.url = fmt.Sprintf("%s/%s/%s", host, woocommerceEndPoint, endPoint)
 	for key, param := range mapUrlParams {
-		arrayUrlParams = append(arrayUrlParams, fmt.Sprintf("%s=%s", key, param))
+		arrayUrlParams = append(arrayUrlParams, fmt.Sprintf("%s=%v", key, param))
 	}
 
 	joinedParams := strings.Join(arrayUrlParams, "&")
@@ -54,7 +54,7 @@ func (r *Request) makeUrl(host, endPoint string, urlParams any) error {
 }
 
 func NewGetRequest(host, endPoint string, urlParams, body any, headers ...map[string][]string) (*Request, error) {
-	return newRequest(http.MethodPost, host, endPoint, urlParams, body, headers...)
+	return newRequest(http.MethodGet, host, endPoint, urlParams, body, headers...)
 }
 
 func NewPostRequest(host, endPoint string, urlParams, body any, headers ...map[string][]string) (*Request, error) {
