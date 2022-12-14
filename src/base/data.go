@@ -1,5 +1,23 @@
 package base
 
+type WooContext string
+type Order string
+type OrderBy string
+
+const (
+	ContextView WooContext = "view"
+	ContextEdit            = "edit"
+
+	OrderAsc  Order = "asc"
+	OrderDesc       = "desc"
+
+	OrderDate    OrderBy = "date"
+	OrderId              = "id"
+	OrderInclude         = "include"
+	OrderTitle           = "title"
+	OrderSlug            = "slug"
+)
+
 const (
 	GetContinentsEndpoint = "data/continents"
 	GetCurrenciesEndpoint = "data/currencies"

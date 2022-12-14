@@ -5,24 +5,6 @@ import (
 	"github.com/akbariandev/wookit/src/base"
 )
 
-type WooContext string
-type Order string
-type OrderBy string
-
-const (
-	view WooContext = "view"
-	edit            = "edit"
-
-	asc  Order = "asc"
-	desc       = "desc"
-
-	date    OrderBy = "date"
-	id              = "id"
-	include         = "include"
-	title           = "title"
-	slug            = "slug"
-)
-
 type Coupon struct {
 	ID                        int           `json:"id"`
 	Code                      string        `json:"code"`
@@ -56,19 +38,19 @@ type Coupon struct {
 
 type GetCouponsListParams struct {
 	*src.WooConfig
-	Context        WooContext `json:"context,omitempty"`
-	Page           uint32     `json:"page,omitempty"`
-	PerPage        uint8      `json:"per_page,omitempty"`
-	Search         string     `json:"search,omitempty"`
-	After          string     `json:"after,omitempty"`
-	Before         string     `json:"before,omitempty"`
-	ModifiedAfter  string     `json:"modified_after,omitempty"`
-	ModifiedBefore string     `json:"modified_before,omitempty"`
-	DatesAreGmt    bool       `json:"dates_are_gmt,omitempty"`
-	Exclude        []string   `json:"exclude,omitempty"`
-	Include        []string   `json:"include,omitempty"`
-	Offset         uint32     `json:"offset,omitempty"`
-	Order          Order      `json:"order,omitempty"`
-	OrderBy        OrderBy    `json:"order_by,omitempty"`
-	Code           string     `json:"code,omitempty"`
+	Context        base.WooContext `json:"context,omitempty"`
+	Page           uint32          `json:"page,omitempty"`
+	PerPage        uint8           `json:"per_page,omitempty"`
+	Search         string          `json:"search,omitempty"`
+	After          string          `json:"after,omitempty"`
+	Before         string          `json:"before,omitempty"`
+	ModifiedAfter  string          `json:"modified_after,omitempty"`
+	ModifiedBefore string          `json:"modified_before,omitempty"`
+	DatesAreGmt    bool            `json:"dates_are_gmt,omitempty"`
+	Exclude        []string        `json:"exclude,omitempty"`
+	Include        []string        `json:"include,omitempty"`
+	Offset         uint32          `json:"offset,omitempty"`
+	Order          base.Order      `json:"order,omitempty"`
+	OrderBy        base.OrderBy    `json:"order_by,omitempty"`
+	Code           string          `json:"code,omitempty"`
 }
