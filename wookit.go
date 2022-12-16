@@ -3,14 +3,17 @@ package wookit
 import (
 	"github.com/akbariandev/wookit/src"
 	"github.com/akbariandev/wookit/src/coupon"
+	"github.com/akbariandev/wookit/src/order"
 )
 
 type wooKitServices struct {
 	*coupon.CouponService
+	*order.OrderService
 }
 
 type WooKit interface {
 	coupon.ICoupon
+	order.IOrder
 }
 
 func NewWooKit(address, cs, ck string) WooKit {
@@ -22,5 +25,6 @@ func NewWooKit(address, cs, ck string) WooKit {
 
 	return &wooKitServices{
 		CouponService: coupon.NewCouponService(Config),
+		OrderService:  order.NewOrderService(Config),
 	}
 }
