@@ -6,6 +6,7 @@ import (
 	"github.com/akbariandev/wookit/src/customer"
 	"github.com/akbariandev/wookit/src/order"
 	"github.com/akbariandev/wookit/src/product"
+	productAttribute "github.com/akbariandev/wookit/src/product_attribute"
 )
 
 type wooKitServices struct {
@@ -13,6 +14,7 @@ type wooKitServices struct {
 	*order.OrderService
 	*customer.CustomerService
 	*product.ProductService
+	*productAttribute.ProductAttributeService
 }
 
 type WooKit interface {
@@ -20,6 +22,7 @@ type WooKit interface {
 	order.IOrder
 	customer.ICustomer
 	product.IProduct
+	productAttribute.IProductAttribute
 }
 
 func NewWooKit(address, cs, ck string) WooKit {
@@ -30,9 +33,10 @@ func NewWooKit(address, cs, ck string) WooKit {
 	}
 
 	return &wooKitServices{
-		CouponService:   coupon.NewCouponService(Config),
-		OrderService:    order.NewOrderService(Config),
-		CustomerService: customer.NewCustomerService(Config),
-		ProductService:  product.NewProductService(Config),
+		CouponService:           coupon.NewCouponService(Config),
+		OrderService:            order.NewOrderService(Config),
+		CustomerService:         customer.NewCustomerService(Config),
+		ProductService:          product.NewProductService(Config),
+		ProductAttributeService: productAttribute.NewProductAttributeService(Config),
 	}
 }
