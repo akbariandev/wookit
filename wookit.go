@@ -1,12 +1,12 @@
 package wookit
 
 import (
-	"github.com/akbariandev/wookit/src"
-	"github.com/akbariandev/wookit/src/coupon"
-	"github.com/akbariandev/wookit/src/customer"
-	"github.com/akbariandev/wookit/src/order"
-	"github.com/akbariandev/wookit/src/product"
-	productAttribute "github.com/akbariandev/wookit/src/product_attribute"
+	"github.com/akbariandev/wookit/pkg/woocommerce"
+	"github.com/akbariandev/wookit/pkg/woocommerce/coupon"
+	"github.com/akbariandev/wookit/pkg/woocommerce/customer"
+	"github.com/akbariandev/wookit/pkg/woocommerce/order"
+	"github.com/akbariandev/wookit/pkg/woocommerce/product"
+	"github.com/akbariandev/wookit/pkg/woocommerce/product_attribute"
 )
 
 type wooKitServices struct {
@@ -26,7 +26,7 @@ type WooKit interface {
 }
 
 func NewWooKit(address, cs, ck string) WooKit {
-	Config := &src.WooConfig{
+	Config := &woocommerce.WooConfig{
 		Address: address,
 		CS:      cs,
 		CK:      ck,

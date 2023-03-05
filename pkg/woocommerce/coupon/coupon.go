@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"errors"
 	httpHandler "github.com/akbariandev/wookit/internal/http"
-	"github.com/akbariandev/wookit/src"
+	"github.com/akbariandev/wookit/pkg/woocommerce"
 	"io"
 	"net/http"
 	"strconv"
@@ -15,14 +15,14 @@ const (
 )
 
 type CouponService struct {
-	*src.WooConfig
+	*woocommerce.WooConfig
 }
 
 type ICoupon interface {
 	GetCouponsList(params *GetCouponsListParams) (coupons []*Coupon, totalProducts, totalPages int32, err error)
 }
 
-func NewCouponService(config *src.WooConfig) *CouponService {
+func NewCouponService(config *woocommerce.WooConfig) *CouponService {
 	return &CouponService{
 		config,
 	}

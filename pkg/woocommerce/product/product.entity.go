@@ -1,8 +1,8 @@
 package product
 
 import (
-	"github.com/akbariandev/wookit/src"
-	"github.com/akbariandev/wookit/src/base"
+	"github.com/akbariandev/wookit/pkg/woocommerce"
+	"github.com/akbariandev/wookit/pkg/woocommerce/base"
 )
 
 // BackOrder Options: no, notify and yes. Default is no.
@@ -83,7 +83,7 @@ type ProductImage struct {
 	DateCreatedGmt  string `json:"date_created_gmt"`
 	DateModified    string `json:"date_modified"`
 	DateModifiedGmt string `json:"date_modified_gmt"`
-	Src             string `json:"src"`
+	Src             string `json:"pkg"`
 	Name            string `json:"name"`
 	Alt             string `json:"alt"`
 }
@@ -173,7 +173,7 @@ type Product struct {
 }
 
 type GetProductListParams struct {
-	*src.WooConfig
+	*woocommerce.WooConfig
 	Context        base.WooContext `json:"context,omitempty"`
 	Page           uint32          `json:"page,omitempty"`
 	PerPage        uint8           `json:"per_page,omitempty"`

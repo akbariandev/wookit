@@ -1,8 +1,8 @@
 package coupon
 
 import (
-	"github.com/akbariandev/wookit/src"
-	"github.com/akbariandev/wookit/src/base"
+	"github.com/akbariandev/wookit/pkg/woocommerce"
+	"github.com/akbariandev/wookit/pkg/woocommerce/base"
 )
 
 type Coupon struct {
@@ -37,7 +37,7 @@ type Coupon struct {
 }
 
 type GetCouponsListParams struct {
-	*src.WooConfig
+	*woocommerce.WooConfig
 	Context        base.WooContext `json:"context,omitempty"`
 	Page           uint32          `json:"page,omitempty"`
 	PerPage        uint8           `json:"per_page,omitempty"`

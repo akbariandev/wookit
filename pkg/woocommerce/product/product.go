@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"errors"
 	httpHandler "github.com/akbariandev/wookit/internal/http"
-	"github.com/akbariandev/wookit/src"
+	"github.com/akbariandev/wookit/pkg/woocommerce"
 	"io"
 	"net/http"
 	"strconv"
@@ -15,14 +15,14 @@ const (
 )
 
 type ProductService struct {
-	*src.WooConfig
+	*woocommerce.WooConfig
 }
 
 type IProduct interface {
 	GetProductsList(params *GetProductListParams) (products []*Product, totalOrders, totalPages int32, err error)
 }
 
-func NewProductService(config *src.WooConfig) *ProductService {
+func NewProductService(config *woocommerce.WooConfig) *ProductService {
 	return &ProductService{
 		config,
 	}

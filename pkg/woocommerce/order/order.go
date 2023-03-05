@@ -1,9 +1,9 @@
-package customer
+package order
 
 import (
 	"errors"
 	httpHandler "github.com/akbariandev/wookit/internal/http"
-	"github.com/akbariandev/wookit/src"
+	"github.com/akbariandev/wookit/pkg/woocommerce"
 	jsonIter "github.com/json-iterator/go"
 	"io"
 	"net/http"
@@ -11,29 +11,29 @@ import (
 )
 
 const (
-	getCustomerListEndPoint = "customers"
+	getOrderListEndPoint = "orders"
 )
 
-type CustomerService struct {
-	*src.WooConfig
+type OrderService struct {
+	*woocommerce.WooConfig
 }
 
-type ICustomer interface {
-	GetCustomersList(params *GetCustomerListParams) (customers []*Customer, totalCustomers, totalPages int32, err error)
+type IOrder interface {
+	GetOrdersList(params *GetOrdersListParams) (orders []*Order, totalOrders, totalPages int32, err error)
 }
 
-func NewCustomerService(config *src.WooConfig) *CustomerService {
-	return &CustomerService{
+func NewOrderService(config *woocommerce.WooConfig) *OrderService {
+	return &OrderService{
 		config,
 	}
 }
 
-func (c *CustomerService) GetCustomersList(params *GetCustomerListParams) (customers []*Customer, totalCustomers, totalPages int32, err error) {
+func (c *OrderService) GetOrdersList(params *GetOrdersListParams) (orders []*Order, totalOrders, totalPages int32, err error) {
 	if params == nil {
-		params = &GetCustomerListParams{}
+		params = &GetOrdersListParams{}
 	}
 	params.WooConfig = c.WooConfig
-	request, err := httpHandler.NewGetRequest(c.WooConfig.Address, getCustomerListEndPoint, params, nil)
+	request, err := httpHandler.NewGetRequest(c.WooConfig.Address, getOrderListEndPoint, params, nil)
 	if err != nil {
 		return nil, 0, 0, err
 	}
@@ -46,14 +46,14 @@ func (c *CustomerService) GetCustomersList(params *GetCustomerListParams) (custo
 
 	if res.StatusCode == http.StatusOK {
 		var json = jsonIter.ConfigCompatibleWithStandardLibrary
-		err = json.NewDecoder(res.Body).Decode(&customers)
+		err = json.NewDecoder(res.Body).Decode(&orders)
 		if err != nil {
 			return nil, 0, 0, err
 		}
 
 		tp, _ := strconv.Atoi(res.Header.Get("X-WP-TotalPages"))
 		t, _ := strconv.Atoi(res.Header.Get("X-WP-Total"))
-		return customers, int32(tp), int32(t), err
+		return orders, int32(tp), int32(t), err
 	}
 
 	bodyBytes, err := io.ReadAll(res.Body)

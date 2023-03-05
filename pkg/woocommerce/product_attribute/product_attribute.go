@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"errors"
 	httpHandler "github.com/akbariandev/wookit/internal/http"
-	"github.com/akbariandev/wookit/src"
+	"github.com/akbariandev/wookit/pkg/woocommerce"
 	"io"
 	"net/http"
 	"strconv"
@@ -15,14 +15,14 @@ const (
 )
 
 type ProductAttributeService struct {
-	*src.WooConfig
+	*woocommerce.WooConfig
 }
 
 type IProductAttribute interface {
 	GetProductAttributeList(*GetProductAttributeListParams) ([]*ProductAttribute, int32, int32, error)
 }
 
-func NewProductAttributeService(config *src.WooConfig) *ProductAttributeService {
+func NewProductAttributeService(config *woocommerce.WooConfig) *ProductAttributeService {
 	return &ProductAttributeService{
 		config,
 	}

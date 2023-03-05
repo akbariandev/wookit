@@ -1,8 +1,8 @@
 package customer
 
 import (
-	"github.com/akbariandev/wookit/src"
-	"github.com/akbariandev/wookit/src/base"
+	"github.com/akbariandev/wookit/pkg/woocommerce"
+	"github.com/akbariandev/wookit/pkg/woocommerce/base"
 )
 
 // CustomerRole Limit result set to resources with a specific role. Options: all, administrator, editor, author, contributor, subscriber, customer and shop_manager. Default is customer
@@ -39,7 +39,7 @@ type Customer struct {
 }
 
 type GetCustomerListParams struct {
-	*src.WooConfig
+	*woocommerce.WooConfig
 	Context base.WooContext `json:"context,omitempty"`
 	Page    uint32          `json:"page,omitempty"`
 	PerPage uint8           `json:"per_page,omitempty"`

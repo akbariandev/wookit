@@ -1,4 +1,4 @@
-package src
+package woocommerce
 
 type WooConfig struct {
 	Address string `json:"-"`

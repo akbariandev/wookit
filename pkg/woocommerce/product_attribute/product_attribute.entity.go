@@ -1,7 +1,7 @@
 package productAttribute
 
 import (
-	"github.com/akbariandev/wookit/src"
+	"github.com/akbariandev/wookit/pkg/woocommerce"
 )
 
 // ProductAttributeOrder Options: menu_order, name, name_num and id. Default is menu_order.
@@ -24,5 +24,5 @@ type ProductAttribute struct {
 }
 
 type GetProductAttributeListParams struct {
-	*src.WooConfig
+	*woocommerce.WooConfig
 }
